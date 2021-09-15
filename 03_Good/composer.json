@@ -1,0 +1,15 @@
+{
+    "name": "bertil/03_good",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "SlyOldFoxyBadger",
+            "email": "44817280+SlyOldFoxyBadger@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
