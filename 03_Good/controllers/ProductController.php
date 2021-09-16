@@ -8,15 +8,33 @@
     {
         public function index(Router $router) //Router $router
         {
-            $products = $router->db->getProducts();
+            $search = $_GET['search'] ?? '';
+            $products = $router->db->getProducts($search);
             $router->renderView('products/index', [
-                'products' => $products
+                'products' => $products,
+                'search' => $search
             ]);
         }
 
-        public function create()
+        public function create(Router $router)
         {
-            echo "Create page";
+            $errors = [];
+
+            $product = [
+                'title' => '',
+                'description' => '',
+                'image' => '',
+                'price' => ''
+            ];
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                
+            }
+
+            $router->renderView('products/create', [
+                'product' => $product,
+                'error' => $errors
+            ]);
         }
 
         public function update()
