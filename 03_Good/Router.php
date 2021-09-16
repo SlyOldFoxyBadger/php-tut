@@ -5,6 +5,12 @@
     {
         public array $getRoutes = [];
         public array $postRoutes = [];
+        public Database $db;
+
+        public function __construct()
+        {
+            $this->db = new Database();
+        }
 
         public function get($url, $fn)
         {
@@ -30,13 +36,23 @@
             }
 
             if ($fn) {
-                echo '<pre>';
-                var_dump($fn);
-                echo '</pre>';
-                call_user_func($fn);
+                call_user_func($fn, $this);
             } else {
                 echo "Page not found";
             }
+        }
+
+        public function renderView($views, $params = []) 
+        {
+
+            foreach ($params as $key => $value) {
+                $$key = $value;
+            }
+       
+            ob_start(); //Caching the output
+            include_once __DIR__."/views/$views.php";
+            $content = ob_get_clean();
+            include_once __DIR__.'/views/_layout.php';
         }
         
     }

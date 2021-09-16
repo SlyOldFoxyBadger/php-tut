@@ -2,11 +2,16 @@
 
     namespace app\controllers;
 
+    use app\Router;
+
     class ProductController
     {
-        public function index()
+        public function index(Router $router) //Router $router
         {
-            echo "Index page";
+            $products = $router->db->getProducts();
+            $router->renderView('products/index', [
+                'products' => $products
+            ]);
         }
 
         public function create()
